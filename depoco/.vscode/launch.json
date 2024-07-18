@@ -1,0 +1,26 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Encode",
+            "type": "debugpy",
+            "request": "launch",
+            "cwd": "/depoco/depoco",
+            "program": "encode.py",
+            "args": ["--config_cfg","network_files/e3/e3.yaml"],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Decode",
+            "type": "debugpy",
+            "request": "launch",
+            "cwd": "/depoco/depoco",
+            "program": "decode.py",
+            "args": ["--config_cfg","network_files/e3/e3.yaml"],
+            "console": "integratedTerminal"
+        }
+    ]
+}

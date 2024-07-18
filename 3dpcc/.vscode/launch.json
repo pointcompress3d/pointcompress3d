@@ -1,0 +1,11 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "ROS: Launch",
+            "type": "ros",
+            "request": "launch",
+            "target": "${workspaceFolder}/catkin_ws/src/pointcloud_to_rangeimage/launch/compression.launch", // <<< Configure path to your launch file
+        }
+    ]
+}

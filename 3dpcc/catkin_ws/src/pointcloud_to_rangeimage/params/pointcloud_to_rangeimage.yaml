@@ -1,0 +1,70 @@
+point_cloud_to_rangeimage:
+    # Velodyne sensor setup
+    vlp_rpm: 600.0
+    num_layers: 64
+    firing_cycle: 0.00005
+    # Points are ordered with ascending elevation
+    # elevation_offsets: [-25, -15.639, -11.31, -8.843, -7.254, -6.148, -5.333, -4.667, -4, -3.667, -3.333, -3, -2.667, -2.333, -2, -1.667, -1.333, -1, -0.667, -0.333,
+    # 0, 0.333, 0.667, 1, 1.333, 1.667, 2.333, 3.333, 4.667, 7, 10.333, 15]
+    # azimuth_offsets: [1.4, -1.4, 1.4, -1.4, 1.4, -1.4, 4.2, 1.4, -1.4, -4.2, 4.2, 1.4, -1.4, -4.2, 4.2, 1.4, -1.4, -4.2, 4.2, 1.4,
+    # -1.4, -4.2, 4.2, 1.4, -1.4, -4.2, 1.4, -1.4, 1.4, -1.4, 1.4, -1.4]
+    elevation_offsets: [ 
+            -0.49, -0.85, -1.17, -1.52, -1.89, 
+            -2.25, -2.59, -2.94, -3.31, -3.66, 
+            -4.01, -4.34, -4.71, -5.05, -5.41, 
+            -5.74, -6.11, -6.45, -6.8, -7.16, 
+            -7.51, -7.84, -8.19, -8.54, -8.9, -9.22, 
+            -9.57, -9.93, -10.26, -10.6, -10.93, -11.28, 
+            -11.63, -11.96, -12.28, -12.64, -12.98, 
+            -13.3, -13.64, -13.96, -14.31, -14.64, -14.97, 
+            -15.3, -15.63, -15.96, -16.3, -16.61, -16.93, 
+            -17.27, -17.59, -17.9, -18.24, -18.56, -18.85, 
+            -19.17, -19.5, -19.81, -20.12, -20.42, 
+            -20.74, -21.06, -21.35, -21.65
+    ]
+    azimuth_offsets: [ 
+            4.21, 1.41, -1.4, -4.2, 4.22, 1.4, -1.4, -4.22, 4.22, 
+            1.41, -1.41, -4.21, 4.21, 1.42, -1.41, -4.2, 4.21, 1.42, -1.4, 
+            -4.22, 4.21, 1.41, -1.4, -4.21, 4.2, 1.41, -1.4, -4.23, 4.22, 1.4, 
+            -1.4, -4.21, 4.21, 1.4, -1.4, -4.23, 4.22, 1.41, -1.4, -4.21, 4.21, 1.41, 
+            -1.42, -4.23, 4.2, 1.41, -1.43, -4.22, 4.21, 1.4, -1.43, -4.23, 
+            4.2, 1.4, -1.41, -4.24, 4.21, 1.4, -1.42, -4.24, 4.2, 1.38, -1.41, -4.23
+    ]
+    #Maximum range of sensor
+    threshold : 200
+
+    # Set to true to record point cloud image dataset
+    record_images: false
+    # Path to store lidar compression dataset. The path should contain three sub-folders named azimuth,  range and intensity.
+    record_path: /catkin_ws/images/
+
+
+## Method image compression.
+# image_compression for for jpeg or png compression
+# or
+# one of the RNN based methods:
+# additive_lstm
+# oneshot_lstm with one-shot reconstruction
+# additive_gru for GRU with additive reconstruction
+compression_method: additive_lstm
+
+
+rnn_compression:
+    # weights path of RNN image compression model
+    weights_path: /catkin_ws/models/additive_lstm_32b_32iter.hdf5
+
+    # Bottleneck size of the model for RNN models
+    bottleneck: 32
+
+    # Number of iterations for compression of RNN models
+    # Fewer number of iterations leads to smaller compressed data size and lower compression quality.
+    num_iters: 32
+
+    xla: True
+    mixed_precision: False
+
+
+image_compression:
+    # Parameters for compression of range image using jpeg or png compression
+    image_compression_method: jpeg  # png or jpeg
+    show_debug_prints: false

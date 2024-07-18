@@ -1,0 +1,51 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "Evaluate",
+            "type": "python",
+            "request": "launch",
+            "program": "evaluate.py",
+            "args": [
+                "-cfg=network_files/e3/e3.yaml",
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "Encode",
+            "type": "python",
+            "request": "launch",
+            "program": "encode.py",
+            "args": [
+                "-cfg=network_files/e3/e3.yaml", 
+                "-fp=/data/test/bin/r04/1616760799_283057640_s50_lidar_ouster_south.pcd.bin"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "Decode",
+            "type": "python",
+            "request": "launch",
+            "program": "decode.py",
+            "args": [
+                "-cfg=network_files/e3/e3.yaml",
+                "-fp=/data/test/encoded/1616760799_283057640_s50_lidar_ouster_south.bin"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true
+        }
+    ]
+}
